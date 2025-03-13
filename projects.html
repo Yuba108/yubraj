@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projects - Yubraj Acharya">
+    <title>Projects - Yubraj Acharya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --primary-color: #2d2d2d;
+            --accent-color: #4a90e2;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --spacing: 2rem;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-card.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .project-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --primary-color: #ffffff;
+        }
+
+        [data-theme="dark"] .project-card {
+            background: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] .project-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: transform var(--transition);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Portfolio</span>
+        </a>
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <div class="projects-grid">
+        <div class="project-card">
+            <h2>IT Approach</h2>
+            <img src="Hey1.webp" alt="E-commerce Platform" class="project-image" loading="lazy">
+            <p>Developed a funny and basic webpage.</p>
+            <div class="tech-stack">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                    <span>View Code</span>
+                </a>
+                <a href="Hey.html" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>Live Demo</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h2>Weather App</h2>
+            <img src="project2.jpg" alt="Weather Application" class="project-image" loading="lazy">
+            <p>No Data.</p>
+            <div class="project-links">
+                <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                    <span>View Code</span>
+                </a>
+                <a href="#" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>Live Demo</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h2>To Do List Web Application</h2>
+            <img src="project3.jpg" alt="Task Management System" class="project-image" loading="lazy">
+            <p>No Data.</p>
+            <div class="project-links">
+                <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                    <span>View Code</span>
+                </a>
+                <a href="#" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>Live Demo</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function setTheme(isDark) {
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Initialize theme from localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else {
+            setTheme(prefersDarkScheme.matches);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

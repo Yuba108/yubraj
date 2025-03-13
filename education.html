@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Education - Yubraj Acharya">
+    <title>Education - Yubraj Acharya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --primary-color: #2d2d2d;
+            --accent-color: #4a90e2;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --spacing: 2rem;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .back-btn {
+            color: var(--text-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .education-card.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .education-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .education-card .period {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .education-card .institution {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .courses-list {
+            margin-top: 1rem;
+            list-style: none;
+        }
+
+        .courses-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .courses-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .achievements {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .achievements h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --primary-color: #ffffff;
+        }
+
+        [data-theme="dark"] .education-card {
+            background: #2d2d2d;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] .education-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="dark"] .education-card h2,
+        [data-theme="dark"] .education-card .institution,
+        [data-theme="dark"] .education-card p,
+        [data-theme="dark"] .achievements h3 {
+            color: var(--text-color);
+        }
+
+        [data-theme="dark"] .education-card .period {
+            color: #6ab0ff;
+        }
+
+        [data-theme="dark"] .achievements {
+            border-top-color: #444;
+        }
+
+        [data-theme="dark"] .courses-list li::before {
+            color: #6ab0ff;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: transform var(--transition), color var(--transition);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .education-card {
+                padding: 1.5rem;
+            }
+
+            .education-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Portfolio</span>
+        </a>
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <div class="education-grid">
+        <div class="education-card">
+            <h2>BSc CSIT</h2>
+            <span class="period">Currently Studying</span>
+            <div class="institution">Mid-West University, Graduate School of Science and Technology</div>
+
+        </div>
+
+        <div class="education-card">
+            <h2>Higher Secondary Education (SLC or +2)</h2>
+            <span class="period">Passed out in 2023</span>
+            <div class="institution">South Asian Scholars Academy (SASA)</div>
+            <p>Subjects:</p>
+            <ul>
+                <li><i>Physics</i></li>
+                <li><i>Maths</i></li>
+                <li><i>Computer</i></li>
+                <li><i>Chemistry</i></li>
+                <li><i>English</i></li>
+                <li><i>Nepali</i></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function setTheme(isDark) {
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Add animation class
+            document.body.classList.add('theme-transition');
+            setTimeout(() => {
+                document.body.classList.remove('theme-transition');
+            }, 300);
+        }
+
+        // Initialize theme from localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else {
+            setTheme(prefersDarkScheme.matches);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.education-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

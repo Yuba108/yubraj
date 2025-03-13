@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you?</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ffe644, #cc0014);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffe6e6;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 80%;
+            height: 350px;
+            margin: auto;
+            z-index: 10;
+        }
+        h1 {
+            color: #ff6699;
+            animation: bounce 2s infinite;
+        }
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #yesButton {
+            background-color: #4CAF50;
+            color: white;
+            animation: yesGlow 1s infinite;
+        }
+        #noButton {
+            background-color: #f44336;
+            color: white;
+            animation: noShake 1s infinite;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .person {
+            display: none;
+            position: absolute;
+            top: 50%;
+            font-size: 60px;
+            z-index: 1;
+        }
+        .boy {
+            right: 20%;
+            transform: translateY(-50%);
+        }
+        .girl {
+            left: 20%;
+            transform: translateY(-50%);
+        }
+        @keyframes dance {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes cry {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        @keyframes yesGlow {
+            0% { box-shadow: 0 0 5px #4CAF50; }
+            50% { box-shadow: 0 0 20px #4CAF50; }
+            100% { box-shadow: 0 0 5px #4CAF50; }
+        }
+        @keyframes noShake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(4px); }
+            50% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+            100% { transform: translateX(0); }
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .romantic {
+            background: linear-gradient(to right, #ffcccc, #ff99cc);
+            animation: fadeIn 1s;
+        }
+        .sad {
+            background: linear-gradient(to right, #333333, #000000);
+            animation: fadeIn 1s;
+        }
+        .top-nav {
+    position: fixed; /* Ensures the navigation bar stays at the top */
+    top: 0; /* Aligns it to the top edge */
+    left: 0; /* Aligns it to the left edge */
+    width: auto; /* Let the width adjust based on content */
+    display: flex; /* Aligns child elements horizontally */
+    align-items: center; /* Vertically centers child elements */
+    padding: 10px 15px; /* Adds some spacing inside the nav */
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="projects.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Projects</span>
+        </a>
+    </nav>
+    <div class="container">
+        <h1>Hey, umm<br>i have a crush on you and I've been wanting to ask you that<br>Do you like me?</h1>
+        <br>
+        <button id="yesButton" onclick="respond('yes')">Yes</button>
+        <button id="noButton" onclick="respond('no')" onmouseover="moveNoButton()">No</button>
+        <div id="response"></div>
+    </div>
+    <div id="boy" class="person boy">🕺</div>
+    <div id="girl" class="person girl">💃</div>
+    <script>
+        function respond(answer) {
+            var boy = document.getElementById('boy');
+            var girl = document.getElementById('girl');
+            var yesButton = document.getElementById('yesButton');
+            var noButton = document.getElementById('noButton');
+            var body = document.body;
+
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+
+            if (answer === 'yes') {
+                document.getElementById('response').innerHTML = '<p>Yay! 🎉 send me the screenshot! 😅</p>';
+                confetti();
+                boy.innerHTML = '🕺';
+                girl.innerHTML = '💃';
+                boy.style.animation = 'dance 1s infinite';
+                girl.style.animation = 'dance 1s infinite';
+                boy.style.display = 'block';
+                girl.style.display = 'block';
+                body.classList.add('romantic');
+                body.classList.remove('sad');
+            } else {
+                document.getElementById('response').innerHTML = '<p>Ouch! 🥲 My heart needs a reboot!</p>';
+                boy.innerHTML = '😭';
+                girl.innerHTML = '😭';
+                boy.style.animation = 'cry 1s infinite';
+                girl.style.animation = 'cry 1s infinite';
+                boy.style.display = 'block';
+                girl.style.display = 'block';
+                body.classList.add('sad');
+                body.classList.remove('romantic');
+            }
+        }
+
+        function moveNoButton() {
+            var button = document.getElementById('noButton');
+            var container = document.querySelector('.container');
+            var maxX = container.clientWidth - button.clientWidth;
+            var maxY = container.clientHeight - button.clientHeight;
+            var randomX = Math.floor(Math.random() * maxX);
+            var randomY = Math.floor(Math.random() * maxY);
+            button.style.position = 'absolute';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        }
+
+        function confetti() {
+            for (var i = 0; i < 100; i++) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            var confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            document.body.appendChild(confetti);
+
+            confetti.style.position = 'fixed';
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.top = Math.random() * window.innerHeight + 'px';
+            confetti.style.width = Math.random() * 10 + 'px';
+            confetti.style.height = Math.random() * 10 + 'px';
+            confetti.style.backgroundColor = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
+            confetti.style.animation = 'fall 3s linear infinite';
+
+            setTimeout(function() {
+                document.body.removeChild(confetti);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
